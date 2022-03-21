@@ -53,8 +53,12 @@
 
       var button = document.createElement("button");
       button.textContent = "Buy";
+      button.setAttribute("onclick", "addToPurchase()");
       div.append(image, p, p1, button);
       document.querySelector("#main").append(div);
+      function addToPurchase() {
+        console.log("hi");
+      }
     });
   }
 
