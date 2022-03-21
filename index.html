@@ -51,7 +51,10 @@
 
       var p1 = document.createElement("p");
       p1.textContent = data["price"];
-      div.append(image, p, p1);
+
+      var button = document.createElement("button");
+      button.textContent = "Buy";
+      div.append(image, p, p1, button);
       document.querySelector("#main").append(div);
     });
   }
