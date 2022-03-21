@@ -19,4 +19,11 @@
 
 <script>
   //write logic here
+  var wallet = 0;
+  function addtoWallet() {
+    let input = document.querySelector("input").value;
+    wallet = Number(input) + wallet;
+    // console.log(wallet);
+    localStorage.setItem("wallet", wallet);
+  }
 </script>
