@@ -5,12 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      #main {
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        gap: 20px;
+      }
+    </style>
   </head>
 
   <body>
     <div>
       <h3 id="wallet">
         <!--SHOW CURRENT WALLET VALUE HERE, ONLY THE NUMBER SHOULD BE VISIBLE-->
+        10
       </h3>
     </div>
 
@@ -22,4 +30,31 @@
 
 <script type="module">
   //WRITE YOUR LOGIC HERE
+  var wallet = document.getElementById("wallet");
+  wallet.textContent = localStorage.getItem("wallet");
+
+  async function vouchers() {
+    let res = await fetch(
+      "https://masai-vouchers-api.herokuapp.com/api/vouchers"
+    );
+    let voucherData = await res.json();
+    voucherData = voucherData[0]["vouchers"];
+    console.log(voucherData);
+    voucherData.map(function (data) {
+      var div = document.createElement("div"); //item
+
+      var image = document.createElement("img");
+      image.setAttribute("src", data["image"]);
+
+      var p = document.createElement("p");
+      p.textContent = data["name"];
+
+      var p1 = document.createElement("p");
+      p1.textContent = data["price"];
+      div.append(image, p, p1);
+      document.querySelector("#main").append(div);
+    });
+  }
+
+  vouchers();
 </script>
